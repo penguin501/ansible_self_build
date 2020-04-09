@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  tasks:
+  - name: docker-compose install
+    apk:
+      name: docker-compose
+      update_cache: yes
+    register: output
+
+  - name: Run `docker-compose up` again
+    docker_compose:
+      project_src: /ansible
+      build: no
+    register: output
+
+  - name: contanir check
+    docker_container:
+      name: test
+      command: ["cat", "/etc/os-release"]
+    register: output
+
+  - name: down docker
+    docker_compose:
+      project_src: /ansible
+      stopped: yes
+      state: absent
+    register: output

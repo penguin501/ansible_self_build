@@ -1,0 +1,13 @@
+version: "3.2"
+services:
+  ansible:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+    container_name: tool
+    hostname: tool
+    volumes:
+      - ./workdir:/ansible
+      - /var/run/docker.sock:/var/run/docker.sock
