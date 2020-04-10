@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual=build-deps wget \
   && apk del build-deps
 
 RUN sed -e 's;/bin/ash$;/bin/bash;g' -i /etc/passwd && \
-    echo 'alias l="ls -lah --color=auto"' >> ~/.bash_profile && \
+    echo 'alias l="ls -lah --color=auto"' >> ~/.bashrc && \
     ansible-galaxy install giovtorres.bash-completion && \
     echo 'PS1="\[\e[1;32m\]\u@\h:\[\e[0m\]\w\[\e[1;32m\]$ \[\e[0m\]"' >> ~/.bashrc
 
